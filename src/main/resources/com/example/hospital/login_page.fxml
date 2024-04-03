@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ComboBox?>
+<AnchorPane prefHeight="200.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hospital.HelloController">
+  <VBox alignment="CENTER" prefHeight="300.0" prefWidth="180.0" spacing="20.0" AnchorPane.leftAnchor="100.0">
+    <children>
+      <TextField fx:id="nameField" promptText="Name" />
+      <PasswordField fx:id="passwordField" promptText="Password" />
+      <ComboBox fx:id="userComboBox" promptText="Log in as" minWidth="200"/>
+      <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="Log in" />
+      <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="Sign up" />
+      </children>
+  </VBox>
+</AnchorPane>
