@@ -1,20 +1,67 @@
 package com.example.hospital;
 
+import com.example.hospital.controller.LoginController;
+import com.example.hospital.repository.interfaces.*;
+import com.example.hospital.repository.hibernate.*;
+import com.example.hospital.service.Service;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.hibernate.SessionFactory;
+import org.hibernate.boot.MetadataSources;
+import org.hibernate.boot.registry.StandardServiceRegistry;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 import java.io.IOException;
 
 public class HelloApplication extends Application {
+    private static SessionFactory sessionFactory;
+
+    private static void setUp() {
+        final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
+                .configure()
+                .build();
+        try {
+            sessionFactory = new MetadataSources(registry)
+                    .buildMetadata()
+                    .buildSessionFactory();
+        } catch (Exception e) {
+            e.printStackTrace();
+            StandardServiceRegistryBuilder.destroy(registry);
+        }
+    }
+    private static void tearDown() {
+        if (sessionFactory != null) {
+            sessionFactory.close();
+        }
+    }
+
     @Override
     public void start(Stage stage) throws IOException {
-        displayAllWindows();
+        AdminRepository adminRepository = new AdminHBRepository(sessionFactory);
+        DoctorRepository doctorRepository = new DoctorHBRepository(sessionFactory);
+        PharmacistRepository pharmacistRepository = new PharmacistHBRepository(sessionFactory);
+        MedicineRepository medicineRepository = new MedicineHBRepository(sessionFactory);
+        OrderRepository orderRepository = new OrderHBRepository(sessionFactory);
+        MedicineOrderRepository medicineOrderRepository = new MedicineOrderHBRepository(sessionFactory);
+        SectionRepository sectionRepository = new SectionHBRepository(sessionFactory);
+        Service service = new Service(adminRepository, doctorRepository, pharmacistRepository,
+                medicineRepository, orderRepository, medicineOrderRepository, sectionRepository);
+
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("login_page.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        stage.setTitle("Log in page");
+        stage.setScene(scene);
+
+        LoginController loginController = fxmlLoader.getController();
+        loginController.setUp(service);
+        stage.show();
     }
 
     public static void main(String[] args) {
+        setUp();
         launch();
     }
 

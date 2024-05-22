@@ -13,7 +13,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <AnchorPane minHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hospital.HelloController">
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hospital.controller.PharmacistController">
     <VBox alignment="CENTER" prefHeight="300.0" prefWidth="1300.0" spacing="20.0" AnchorPane.leftAnchor="100.0">
         <children>
             <HBox alignment="CENTER" minHeight="600.0" prefWidth="1200.0" spacing="30.0">
@@ -24,7 +24,7 @@
                                 <TableColumn fx:id="columnName" minWidth="60" text="Name" />
                                 <TableColumn fx:id="columnPrice" minWidth="60" text="Price" />
                                 <TableColumn fx:id="columnDescription" minWidth="100" text="Description" />
-                                <TableColumn fx:id="columnLeftQuanitity" minWidth="60" text="Left quantity" />
+                                <TableColumn fx:id="columnLeftQuantity" minWidth="60" text="Left quantity" />
                             </columns>
                             <HBox.margin>
                                 <Insets bottom="30.0" top="30.0" />
