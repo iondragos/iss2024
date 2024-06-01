@@ -1,5 +1,6 @@
 package com.example.hospital.repository.hibernate;
 
+import com.example.hospital.domain.Medicine;
 import com.example.hospital.domain.Section;
 import com.example.hospital.repository.interfaces.SectionRepository;
 import org.hibernate.SessionFactory;
@@ -14,7 +15,13 @@ public class SectionHBRepository implements SectionRepository {
     }
     @Override
     public Optional<Section> findOne(Long aLong) {
-        return Optional.empty();
+        try(var session = sessionFactory.openSession()){
+            var section = session.get(Section.class, aLong);
+            return Optional.ofNullable(section);
+        }
+        catch (Exception e){
+            return Optional.empty();
+        }
     }
 
     @Override

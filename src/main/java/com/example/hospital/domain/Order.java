@@ -14,11 +14,11 @@ public class Order extends EntityInterface implements Serializable {
     @JoinColumn(name = "id_section")
     private Section section;
     @Column(name="order_status")
-    private OrderStatus orderStatus;
+    private String orderStatus;
 
     public Order(){}
 
-    public Order(Section section, OrderStatus orderStatus) {
+    public Order(Section section, String orderStatus) {
         this.section = section;
         this.orderStatus = orderStatus;
     }
@@ -31,11 +31,11 @@ public class Order extends EntityInterface implements Serializable {
         this.section = section;
     }
 
-    public OrderStatus getOrderStatus() {
+    public String getOrderStatus() {
         return orderStatus;
     }
 
-    public void setOrderStatus(OrderStatus orderStatus) {
+    public void setOrderStatus(String orderStatus) {
         this.orderStatus = orderStatus;
     }
 
@@ -44,7 +44,7 @@ public class Order extends EntityInterface implements Serializable {
         if (this == o) return true;
         if (!(o instanceof Order order)) return false;
         if (!super.equals(o)) return false;
-        return Objects.equals(getSection(), order.getSection()) && getOrderStatus() == order.getOrderStatus();
+        return Objects.equals(getSection(), order.getSection()) && Objects.equals(getOrderStatus(), order.getOrderStatus());
     }
 
     @Override
@@ -56,7 +56,7 @@ public class Order extends EntityInterface implements Serializable {
     public String toString() {
         return "Order{" +
                 "section=" + section +
-                ", orderStatus=" + orderStatus +
+                ", orderStatus='" + orderStatus + '\'' +
                 '}';
     }
 }

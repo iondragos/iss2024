@@ -16,9 +16,9 @@
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hospital.controller.PharmacistController">
     <VBox alignment="CENTER" prefHeight="300.0" prefWidth="1300.0" spacing="20.0" AnchorPane.leftAnchor="100.0">
         <children>
-            <HBox alignment="CENTER" minHeight="600.0" prefWidth="1200.0" spacing="30.0">
+            <HBox alignment="CENTER" minHeight="700.0" prefWidth="1200.0" spacing="30.0">
                 <children>
-                    <VBox alignment="TOP_CENTER" prefHeight="500.0" prefWidth="300.0" spacing="10.0">
+                    <VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="300.0" spacing="10.0">
                         <TableView fx:id="tableMedicine" prefHeight="400.0" minWidth="500">
                             <columns>
                                 <TableColumn fx:id="columnName" minWidth="60" text="Name" />
@@ -33,15 +33,20 @@
                                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                             </columnResizePolicy>
                         </TableView>
-                        <Button fx:id="BtnAddMedicine" mnemonicParsing="false" prefHeight="25.0" minWidth="120.0" text="Add medicine" />
-                        <Button fx:id="BtnDeleteMedicine" mnemonicParsing="false" prefHeight="25.0" minWidth="120.0" text="Delete medicine" />
-                        <Button fx:id="BtnUpdateMedicine" mnemonicParsing="false" prefHeight="25.0" minWidth="120.0" text="Update medicine" />
+                        <TextField fx:id="nameTF" maxWidth="250" promptText="Name" />
+                        <TextField fx:id="priceTF" maxWidth="250" promptText="Price" />
+                        <TextField fx:id="descriptionTF" maxWidth="250" promptText="Description" />
+                        <TextField fx:id="quantityTF" maxWidth="250" promptText="Quantity" />
+
+                        <Button fx:id="BtnAddMedicine" onAction="#addMedicine" mnemonicParsing="false" prefHeight="25.0" minWidth="120.0" text="Add medicine" />
+                        <Button fx:id="BtnDeleteMedicine" onAction="#deleteMedicine" mnemonicParsing="false" prefHeight="25.0" minWidth="120.0" text="Delete medicine" />
+                        <Button fx:id="BtnUpdateMedicine" onAction="#updateMedicine" mnemonicParsing="false" prefHeight="25.0" minWidth="120.0" text="Update medicine" />
                     </VBox>
                 </children>
 
                 <children>
                     <VBox alignment="TOP_CENTER" prefHeight="500.0" prefWidth="300.0" spacing="10.0">
-                        <TableView fx:id="tableOrderStatus" prefHeight="340.0" minWidth="200">
+                        <TableView fx:id="tableOrder" prefHeight="340.0" minWidth="200">
                             <columns>
                                 <TableColumn fx:id="columnOrderId" prefWidth="60" text="Order id" />
                                 <TableColumn fx:id="columnOrderStatus" prefWidth="60" text="Order status" />
@@ -53,12 +58,15 @@
                                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                             </columnResizePolicy>
                         </TableView>
+                        <Button fx:id="BtnLoadOrder" onAction="#loadOrder" mnemonicParsing="false"  prefHeight="25.0" minWidth="120.0" text="Load order" />
+                        <Button fx:id="BtnHonourOrder" onAction="#honourOrder" mnemonicParsing="false"  prefHeight="25.0" minWidth="120.0" text="Honour order" />
+                        <Button fx:id="BtnRejectOrder" onAction="#refuseOrder" mnemonicParsing="false"  prefHeight="25.0" minWidth="120.0" text="Refuse order" />
                     </VBox>
                 </children>
 
                 <children>
                     <VBox alignment="TOP_CENTER" prefHeight="500.0" prefWidth="300.0" spacing="10.0">
-                        <TableView fx:id="tableOrder" prefHeight="340.0" minWidth="200">
+                        <TableView fx:id="tableOrderItem" prefHeight="340.0" minWidth="200">
                             <columns>
                                 <TableColumn fx:id="columnMedicineName" prefWidth="60" text="Medicine name" />
                                 <TableColumn fx:id="columnQuantity" prefWidth="60" text="Quantity" />
@@ -70,8 +78,6 @@
                                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                             </columnResizePolicy>
                         </TableView>
-                        <Button fx:id="BtnHonourOrder" mnemonicParsing="false"  prefHeight="25.0" minWidth="120.0" text="Honour order" />
-                        <Button fx:id="BtnRejectOrder" mnemonicParsing="false"  prefHeight="25.0" minWidth="120.0" text="Reject order" />
                     </VBox>
                 </children>
 

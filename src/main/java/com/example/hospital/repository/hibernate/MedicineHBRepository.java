@@ -15,7 +15,13 @@ public class MedicineHBRepository implements MedicineRepository {
     }
     @Override
     public Optional<Medicine> findOne(Long aLong) {
-        return Optional.empty();
+        try(var session = sessionFactory.openSession()){
+            var medicine = session.get(Medicine.class, aLong);
+            return Optional.ofNullable(medicine);
+        }
+        catch (Exception e){
+            return Optional.empty();
+        }
     }
 
     @Override
@@ -30,21 +36,56 @@ public class MedicineHBRepository implements MedicineRepository {
 
     @Override
     public Optional<Medicine> save(Medicine entity) {
-        return Optional.empty();
+        try(var session = sessionFactory.openSession()){
+            var transaction = session.beginTransaction();
+            session.save(entity);
+            transaction.commit();
+            return Optional.of(entity);
+        }
+        catch (Exception e){
+            return Optional.empty();
+        }
     }
 
     @Override
     public Optional<Medicine> delete(Long aLong) {
-        return Optional.empty();
+        var medicineOpt = findOne(aLong);
+        if(medicineOpt.isEmpty())
+            return Optional.empty();
+        try(var session = sessionFactory.openSession()){
+            var transaction = session.beginTransaction();
+            session.delete(medicineOpt.get());
+            transaction.commit();
+            return medicineOpt;
+        }
+        catch (Exception e){
+            return Optional.empty();
+        }
     }
 
     @Override
     public Optional<Medicine> update(Medicine entity) {
-        return Optional.empty();
+        var medicineOpt = findOne(entity.getId());
+        if(medicineOpt.isEmpty())
+            return Optional.empty();
+        try(var session = sessionFactory.openSession()){
+            var transaction = session.beginTransaction();
+            session.update(entity);
+            transaction.commit();
+            return medicineOpt;
+        }
+        catch (Exception e){
+            return Optional.empty();
+        }
     }
 
     @Override
     public Integer size() {
-        return null;
+        try(var session = sessionFactory.openSession()){
+            return session.createQuery("SELECT M FROM Medicine M", Medicine.class).list().size();
+        }
+        catch (Exception e){
+            return 0;
+        }
     }
 }

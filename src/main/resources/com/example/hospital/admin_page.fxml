@@ -33,9 +33,18 @@
                                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                             </columnResizePolicy>
                         </TableView>
-                        <Button fx:id="BtnAddMedicine" mnemonicParsing="false" prefHeight="25.0" minWidth="120.0" text="Add medicine" />
-                        <Button fx:id="BtnDeleteMedicine" mnemonicParsing="false" prefHeight="25.0" minWidth="120.0" text="Delete medicine" />
-                        <Button fx:id="BtnUpdateMedicine" mnemonicParsing="false" prefHeight="25.0" minWidth="120.0" text="Update medicine" />
+                    </VBox>
+                </children>
+                <children>
+                    <VBox alignment="TOP_CENTER" prefHeight="500.0" minWidth="300.0" spacing="10.0">
+                        <TextField fx:id="nameTF" maxWidth="250" promptText="Name" />
+                        <TextField fx:id="priceTF" maxWidth="250" promptText="Price" />
+                        <TextField fx:id="descriptionTF" maxWidth="250" promptText="Description" />
+                        <TextField fx:id="quantityTF" maxWidth="250" promptText="Quantity" />
+
+                        <Button fx:id="BtnAddMedicine" onAction="#addMedicine" mnemonicParsing="false" prefHeight="25.0" minWidth="120.0" text="Add medicine" />
+                        <Button fx:id="BtnDeleteMedicine" onAction="#deleteMedicine" mnemonicParsing="false" prefHeight="25.0" minWidth="120.0" text="Delete medicine" />
+                        <Button fx:id="BtnUpdateMedicine" onAction="#updateMedicine" mnemonicParsing="false" prefHeight="25.0" minWidth="120.0" text="Update medicine" />
                     </VBox>
                 </children>
             </HBox>

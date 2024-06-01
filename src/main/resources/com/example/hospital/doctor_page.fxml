@@ -33,14 +33,14 @@
                                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                             </columnResizePolicy>
                         </TableView>
-                        <TextField fx:id="quantityField" promptText="Quantity" />
-                        <Button fx:id="BtnAddMedicineItem" mnemonicParsing="false" prefHeight="25.0" minWidth="120.0" text="Add medicine to order" />
+                        <TextField fx:id="quantityTF" promptText="Quantity" />
+                        <Button fx:id="BtnAddMedicineItem" onAction="#addMedicineItem" mnemonicParsing="false" prefHeight="25.0" minWidth="120.0" text="Add medicine to order" />
                     </VBox>
                 </children>
 
                 <children>
                     <VBox alignment="TOP_CENTER" prefHeight="500.0" prefWidth="300.0" spacing="10.0">
-                        <TableView fx:id="tableOrder" prefHeight="340.0" minWidth="200">
+                        <TableView fx:id="tableOrderItem" prefHeight="340.0" minWidth="200">
                             <columns>
                                 <TableColumn fx:id="columnMedicineName" prefWidth="60" text="Medicine name" />
                                 <TableColumn fx:id="columnQuantity" prefWidth="60" text="Quantity" />
@@ -52,16 +52,14 @@
                                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                             </columnResizePolicy>
                         </TableView>
-                        <Button fx:id="BtnRemoveMedicineItem" mnemonicParsing="false"  prefHeight="25.0" minWidth="120.0" text="Remove medicine" />
-                        <TextField fx:id="newQuantityField" promptText="New quantity" />
-                        <Button fx:id="BtnUpdateMedicineItem" mnemonicParsing="false" prefHeight="25.0" minWidth="120.0" text="Update medicine quantity" />
-                        <Button fx:id="BtnSendOrder" mnemonicParsing="false" prefHeight="25.0" minWidth="120.0" text="Send order" />
+                        <Button fx:id="BtnRemoveMedicineItem" onAction="#deleteMedicineItem" mnemonicParsing="false"  prefHeight="25.0" minWidth="120.0" text="Remove medicine" />
+                        <Button fx:id="BtnSendOrder" onAction="#sendOrder" mnemonicParsing="false" prefHeight="25.0" minWidth="120.0" text="Send order" />
                     </VBox>
                 </children>
 
                 <children>
                     <VBox alignment="TOP_CENTER" prefHeight="500.0" prefWidth="300.0" spacing="10.0">
-                        <TableView fx:id="tableOrderStatus" prefHeight="340.0" minWidth="200">
+                        <TableView fx:id="tableOrder" prefHeight="340.0" minWidth="200">
                             <columns>
                                 <TableColumn fx:id="columnOrderId" prefWidth="60" text="Order id" />
                                 <TableColumn fx:id="columnOrderStatus" prefWidth="60" text="Order status" />
